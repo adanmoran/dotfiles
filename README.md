@@ -22,6 +22,8 @@ libssl-dev
 
 libssl1.0.0
 
+rdm
+
 ==========================
 RUN THE FOLLOWING IN ORDER
 ==========================
