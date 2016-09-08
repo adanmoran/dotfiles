@@ -38,6 +38,8 @@ sudo ./install_nvim.sh
 
 sudo ./install_clang.sh (for YouCompleteMe)
 
+sudo ./install_rtags.sh (to jump around in files using vim)
+
 cd ~
 
 git clone https://github.com/adanmoran/dotfiles
