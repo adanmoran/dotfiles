@@ -3,14 +3,23 @@ A collection of my Linux config files, so that I can keep my config up to date a
 
 REQUIREMENTS (LINUX)
 git
+
 build-essentials
+
 libxt-dev
+
 libavformat54
+
 libglu1-mesa-dev
+
 nvidia-settings
+
 libatlas3-base
+
 libssl-dev
+
 libssl1.0.0
+
 
 RUN THE FOLLOWING IN ORDER
 cd ~
