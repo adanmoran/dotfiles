@@ -1,7 +1,9 @@
 # dotfiles
 A collection of my Linux config files, so that I can keep my config up to date across many computers.
-
+====================
 REQUIREMENTS (LINUX)
+====================
+
 git
 
 build-essentials
@@ -20,8 +22,10 @@ libssl-dev
 
 libssl1.0.0
 
-
+==========================
 RUN THE FOLLOWING IN ORDER
+==========================
+
 cd ~
 
 git clone https://github.com/adanmoran/system-setup-scripts
