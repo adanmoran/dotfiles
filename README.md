@@ -79,6 +79,9 @@ cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=1; rc -J .
 (now your directory will build so you can jump to/from object declarations.
 You should run this command once every major release, or about once a month)
 
+Start a new terminal in tmux, and run rdm there. It takes a full terminal window to run.
+Once you've done that, you will be able to follow tags easily.
+
 ======
 NOTES:
 ======
