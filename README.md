@@ -67,6 +67,16 @@ cd ~/dotfiles/bundles/YouCompleteMe
 ./install.py --clang-completer
 
 
+======
+RTags
+======
+
+(in your build directory:)
+cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=1; rc -J .
+
+(now your directory will build so you can jump to/from object declarations.
+You should run this command once every major release, or about once a month)
+
 NOTES:
 *If you get an error with the clang installer regarding dpkg and a library,
  run the command "sudo dpkg -i --force-overwrite <library_that_caused_issue>"
