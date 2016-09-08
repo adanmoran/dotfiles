@@ -60,7 +60,7 @@ vim
 
 tmux
 
-CTRL-F + i
+CTRL-F + SHFT-i
 
 (log out and log in again)
 
