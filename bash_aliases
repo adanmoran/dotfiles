@@ -3,9 +3,9 @@ alias screen="screen -e^Ff"
 alias df="df -h"
 alias f95="f95 -cpp -Wall -ffree-line-length-none -Wtabs"
 if [[ "$(hostname)" != "pontus.cee.carleton.ca" ]]; then
-	alias ls="ls --color=auto -lAhtrF"
+	alias ls="ls --color=auto"
 else
-	alias ls="ls -lAhtrFG"
+	alias ls="ls --color=auto"
 fi
 alias grep="grep --color=always"
 

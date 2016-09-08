@@ -6,20 +6,7 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 let hostos = substitute(system('uname -o'), '\n', '', '')
 
 
-if hostname ==? 'pof' || hostname ==? 'tinder' || hostname ==? 'grinder'
 	let domain='neptec'
-elseif matchstr(hostname, 'dena') ==? 'dena' || hostname ==? 'sahand' || hostname ==? 'pontus' || hostname ==? 'pontus.cee.carleton.ca'
-	let domain='school'
-elseif $TRUE_HOST !=? ''
-	let domain='ec'
-elseif hostname ==? 'tegra-ubuntu' || hostos ==? 'Cygwin'
-	let domain='neptec-small'
-elseif match(hostname, 'siteground')
-	" Siteground is an exception because it uses vim 7.0
-	let domain='siteground'
-else
-	let domain='home'
-endif
 " echo 'Using domain ' . domain
 
 let is_win=0
@@ -306,11 +293,8 @@ if has('gui_running')
 	set background=dark
 endif
 
-if domain ==? 'school' || domain ==? 'ec' || !filereadable("/usr/bin/php")
 	colorscheme onedark
-else
-	call <SID>RandColorScheme()
-endif
+	"	call <SID>RandColorScheme()
 
 " OS Detection
 if is_win
