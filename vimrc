@@ -1,3 +1,5 @@
+" Required to hide garbage characters in NVIM/Tmux
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
 " Needed for Vundles
 set shell=/bin/bash
 
@@ -6,7 +8,7 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 let hostos = substitute(system('uname -o'), '\n', '', '')
 
 
-	let domain='neptec'
+let domain='neptec'
 " echo 'Using domain ' . domain
 
 let is_win=0
@@ -44,6 +46,12 @@ call plug#begin('~/dotfiles/bundles')
 if domain !=? 'neptec-small'
 	" Solarized colour scheme
 	Plug 'altercation/vim-colors-solarized'
+
+	" Typescript syntax colouring for vim
+	Plug 'leafgarland/typescript-vim'
+
+	" Completion and semantic error checking for Angular Components
+	Plug 'Quramy/ng-tsserver'
 
   	if domain !=? 'ec'
 		" Atelier color scheme
@@ -214,10 +222,10 @@ if domain !=? 'neptec-small' && domain !=? 'school' && domain !=? 'ec' && domain
 	set concealcursor=nvic
 
 	" vim-javascript conceal settings.
-	let g:javascript_conceal_function = "λ"
-	let g:javascript_conceal_this = "@"
-	let g:javascript_conceal_return = "<"
-	let g:javascript_conceal_prototype = "#"
+"	let g:javascript_conceal_function = "λ"
+"	let g:javascript_conceal_this = "@"
+"	let g:javascript_conceal_return = "<"
+"	let g:javascript_conceal_prototype = "#"
 endif
 
 " Vim sugar for the UNIX shell commands that need it the most. Features include:
@@ -251,6 +259,21 @@ endif
 "endif
 
 " All of your Plugins must be added before the following line
+
+" Plugin to use Ack.vim, the grep-style vim plugin
+" Usage: Ack SEARCH_TEXT [DIR = Current, search recursively down]
+if executable('ack')
+   Plug 'mileszs/ack.vim'
+	cnoreabbrev Ack Ack!
+endif
+
+" Plugin to improve vim's status line by making it colourize,
+" show the file you're in, display the mode, etc...
+Plug 'vim-airline/vim-airline'
+
+" Plugin to automatically insert matching braces
+" Plug 'Raimondi/delimitMate'
+
 call plug#end()          " required
 
 
@@ -422,14 +445,35 @@ endif
 
 
 """"""""""""""""""""" Airline Config """"""""""""""""""""""
+"
+" See :help airline for configuration options
+"
+
 " For vim-airline, ensure the status line is always displayed:
 set laststatus=2
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
+" Enable modified detection
+let g:airline_detect_modified	= 1
+
+"
+"Check whitespace
+"
+let g:airline#extensions#whitespace#enabled = 1
 " Certain number of spaces are allowed after a tab (so, /**\n* comments can work
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 2
+" Choose which whitespace checks to enable
+let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+" Configure the formatting of the warning message
+let g:airline#extensions#whitespace#trailing_format = 'trail[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'mix-idt[%s]'
+let g:airline#extensions#whitespace#long_format = 'l[%s]'
+let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-idt-file[%s]'
+
+" Show all current open buffers
+let g:airline#extensions#tabline#enabled = 1
 """""""""""""""""""" /Airline Config """"""""""""""""""""""
 
 
@@ -583,7 +627,7 @@ endfunction
 """"""""""""" /python-syntax """""""""""""""""
 
 
-"""""""""""""""""""""""""" fzf """""""""""""""""""""""""""
+""""""""""""""""""""""""""" fzf """""""""""""""""""""""""""
 " Set up keyboard shortbuts for fzf, the fuzzy finder
 " This one searches all the files in the current git repo:
 noremap <c-k> :GitFiles<CR>
@@ -593,6 +637,13 @@ noremap <leader><Tab> :Buffers<CR>
 " unmap <CR>
 
 """"""""""""""""""""""""" /fzf """""""""""""""""""""""""""
+
+"""""""""""""""""""" <C-S> to Save """""""""""""""""""""""""""
+" Re-mape to save in insert mode
+inoremap <C-S> <Esc>:w<CR>
+" Re-map to save in normal mode
+noremap <C-S> :w<CR>
+""""""""""""""""""" /<C-S> to Save """""""""""""""""""""""""""
 
 
 
@@ -616,7 +667,7 @@ noremap <leader>w :w<CR>
 " Remove trailing space
 nnoremap <leader>rt :%s/\s\s*$//<CR>
 let trim_whitelist = ['php', 'js', 'cpp', 'h', 'vim', 'css']
-autocmd BufWritePre * if index(trim_whitelist, &ft) >= 0 | :%s/\s\+$//e
+" autocmd BufWritePre * if index(trim_whitelist, &ft) >= 0 | :%s/\s\+$//e
 
 " Ignore whitespace on vimdiff
 if &diff

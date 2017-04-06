@@ -104,7 +104,7 @@ setopt no_share_history
 zstyle ':completion:*' menu select
 
 # Autocompletion of command line switches for aliases
-setopt completealiases
+#setopt completealiases
 
 # Ignore untracked files for showing status on prompt
 export DISABLE_UNTRACKED_FILES_DIRTY=true
@@ -141,6 +141,11 @@ export DISABLE_UNTRACKED_FILES_DIRTY=true
 if [ -e ${HOME}/.bash_aliases ]; then
 	source ${HOME}/.bash_aliases
 fi
+
+# Import user-defined functions and alias them
+#if [ -e ${HOME}/.user_functions ]; then
+#	source ${HOME}/.user_functions
+#fi
 
 # Dir colours, used by solarized
 if [ -x /usr/bin/dircolors ]; then
@@ -241,7 +246,7 @@ elif [[ $(hostname) == "pof" || $(hostname) == "tinder" || $(hostname) == "grind
 		source /usr/share/zsh/functions/Completion/_ninja
 	fi;
 
-elif [[ $(hostname) = dena* ]]; then
+elif [[ $(hostname) == dena* ]]; then
 	# This should be a system "module use"!
 	module use /cm/shared/denaModules
 
@@ -280,8 +285,28 @@ elif [[ "$(uname -o)" == "Cygwin" ]]; then
 		export wss=${ws}/src
 		export wsi=${ws}/include/3DRiWebScheduler
 	fi
+
+elif [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
+	export BASE=${HOME}/workspace/opal2
+	export QT_DIR=${HOME}/Qt5.3.2/5.3/gcc_64/
+	export ARCH=$(uname -s)$(uname -r | cut -d. -f1)$(uname -m)
+	export BLD=${BASE}/build-3dri-${ARCH}-release
+	export DBG=${BASE}/build-3dri-${ARCH}-debug
+	export SRC=${BASE}/3dri
+	export VNDR=${BASE}/o2linux64
+	alias ninjab='ninja -C ${BLD}'
+	alias ninjad='ninja -C ${DBG}'
+	alias cmakeb='cmake ${BLD}'
+	alias cmaked='cmake ${DBG}'
+
+	# enable z for changing directories
+    . ${HOME}/z/z.sh
+
+	# export homebrew stuff
+	export PATH="$HOME/.linuxbrew/bin:$PATH"
+	export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+	export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 fi;
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # vim: sw=4 sts=0 ts=4 noet ffs=unix :

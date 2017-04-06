@@ -14,7 +14,7 @@ alias gst="git status -uno"
 alias gd="git diff -w --color"
 
 # A better test would be whether I'm running zsh..
-if [[ "${TRUE_HOST}" != "" || "$(hostname)" == *siteground* ]]; then
+if [[ "${TRUE_HOST}" != "" || "$(hostname)" == "amoran-VirtualBox" ]]; then
 	alias ga="git add"
 	alias gb="git branch"
 	alias gba="git branch -vr"
@@ -23,8 +23,13 @@ if [[ "${TRUE_HOST}" != "" || "$(hostname)" == *siteground* ]]; then
 	alias gl="git pull"
 	alias gp="git push"
 	alias gsta="git stash"
+	alias gstai="git stash --keep-index"
 	alias gstp="git stash pop"
 	alias grh="git reset HEAD"
+
+	if [[ -e $(which sqlite3 2>/dev/null) ]]; then
+		alias sqlite="$(which sqlite3)"
+	fi
 fi
 #alias glog="git log --follow --name-status"
 
@@ -32,6 +37,6 @@ if [[ -e ~/.bash_aliases.local ]]; then
 	source ~/.bash_aliases.local
 fi
 
-alias vm="ssh vagrant@127.0.0.1 -p 2222"
+alias cl="clear"
 
 # vim : ts=3 sts=0 shiftwidth=3 noet ft=bash ffs=unix :
