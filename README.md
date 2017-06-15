@@ -1,8 +1,8 @@
 # dotfiles
 A collection of my Linux config files, so that I can keep my config up to date across many computers.
-====================
+
 REQUIREMENTS (LINUX)
-====================
+--------------------
 
 * (Installed) git
 * (Installed) zsh
@@ -21,9 +21,8 @@ sudo apt-get update
 sudo apt-get install cmake
 ```
 
-==========================
 RUN THE FOLLOWING IN ORDER
-==========================
+--------------------------
 First, clone the required repositories. Then go into the setup scripts and install tmux and neovim, which are much
 better systems to use than normal shell and regular vim.
 ```
@@ -57,10 +56,19 @@ If you get an error with the clang installer regarding dpkg and a library, run t
 ```sudo dpkg -i --force-overwrite <library_that_caused_issue>``` and try the clang installer again.
  
 Now we can update the vim plugins to have everything necessary for beautiful code.
+
+First, install the vim Plugin manager (see https://github.com/junegunn/vim-plug)
+```
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+Then, open vim and install the plugins.
 ```
 vim
+--in vim --> :PlugUpgrade
 --in vim --> :PlugInstall
-:q!
+--in vim --> :q!
 ```
 
 Once vim is done updating, install all the tmux plugins and it should start to look beautiful.
@@ -77,9 +85,8 @@ cd ~/dotfiles/bundles/YouCompleteMe
 ./install.py --clang-completer
 ```
 
-======
 For RTags
-======
+---------
 
 In your build directory run the command ```cmake . -DCMAKE_EXPORT_COMPILE_COMMANDS=1; rc -J . ```
 
@@ -89,7 +96,6 @@ You should run this command once every major release, or about once a month)
 Start a new terminal in tmux, and run rdm there. It takes a full terminal window to run.
 Once you've done that, you will be able to follow by using the rtags commands (which you can find online)
 
-======
 NOTES:
 ======
 * All of the files can be changed to suit your needs - simply fork my repository and change the dotfiles/.*rc files before
