@@ -44,6 +44,11 @@ If it ran without error, *Log out* and log in again. Open a new terminal and run
 it's worked if you get a blue box around your current directory, and a green one surrounding the current branch when you're in
 the dotfiles folder.
 
+You can set the default shell with
+```
+chsh -s $(which zsh)
+```
+
 The following is only useful if you want to have autocompletion in Vim and follow variable names to their declarations
 in C/C++.
 ```
