@@ -33,7 +33,7 @@ if [[ -e ${HOME}/dotfiles/antigen/antigen.zsh ]]; then
 	# antigen bundle sorin-ionescu/prezto
 	antigen bundle RobSis/zsh-reentry-hook
 	antigen bundle jocelynmallon/zshmarks
-	antigen bundle uvaes/fzf-marks
+#	antigen bundle uvaes/fzf-marks
 
 	# Plugin to check if a 256 colour terminal
 	# is available, and enable all colours if
