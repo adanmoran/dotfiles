@@ -30,6 +30,8 @@ if [[ "${TRUE_HOST}" != "" || "$(hostname)" == "amoran-VirtualBox" ]]; then
 	if [[ -e $(which sqlite3 2>/dev/null) ]]; then
 		alias sqlite="$(which sqlite3)"
 	fi
+
+	alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 fi
 #alias glog="git log --follow --name-status"
 
