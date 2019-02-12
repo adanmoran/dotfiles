@@ -306,6 +306,9 @@ elif [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 	export PATH="$HOME/.linuxbrew/bin:$PATH"
 	export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 	export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+elif [[ "$(hostname)" == "roberto" ]]; then
+	# Set ROS sources
+	source /opt/ros/kinetic/setup.zsh
 fi;
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
