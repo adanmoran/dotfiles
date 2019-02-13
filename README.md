@@ -101,6 +101,17 @@ You should run this command once every major release, or about once a month)
 Start a new terminal in tmux, and run rdm there. It takes a full terminal window to run.
 Once you've done that, you will be able to follow by using the rtags commands (which you can find online)
 
+For Tmux
+--------
+If you can't save and restore a tmux session (CTRL-f CTRL-s then CTRL-f CTRL-r), you should check that 
+the user owns the `~/.tmux folder`. If not, do the following:
+```
+cd ~
+sudo chown $(whoami):$(whoami) -R ~/.tmux
+```
+This issue of root owning the .tmux folder can also cause other plugins to not work correctly, so ensure this
+is always done!
+
 NOTES:
 ======
 * All of the files can be changed to suit your needs - simply fork my repository and change the dotfiles/.*rc files before
