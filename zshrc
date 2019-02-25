@@ -309,6 +309,7 @@ elif [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 elif [[ "$(hostname)" == "roberto" ]]; then
 	# Set ROS sources
 	source /opt/ros/kinetic/setup.zsh
+	source /home/adanmoran/ROSRadar/kinetic_worskpace/setup.zsh
 fi;
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
