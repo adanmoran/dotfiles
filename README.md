@@ -114,12 +114,20 @@ sudo chown $(whoami):$(whoami) -R ~/.tmux
 This issue of root owning the .tmux folder can also cause other plugins to not work correctly, so ensure this
 is always done!
 
+For LaTeX
+---------
+If you want to have reverse search working in LaTeX (where you can <CTRL>-LeftClick on Zathura to be brought to the correct location in your tex files), you need to run
+'''
+sudo apt-get install xdotool
+'''
+Then simply open your tex files, change something, save and recompile. Now Zathura should open and you can control-click on any item to have neovim automatically switch to that point in the text.
+
 NOTES:
 ======
 * All of the files can be changed to suit your needs - simply fork my repository and change the dotfiles/.*rc files before
 running setup_dotfiles.sh
  
-*To change the font and give zsh the correct colour scheme:
+* To change the font and give zsh the correct colour scheme:
   right-click->Profiles->Profile Preferences
   uncheck "Use system font"
   change font to any "Powerline" font
