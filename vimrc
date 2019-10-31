@@ -310,7 +310,9 @@ nnoremap <Leader>b :ls<CR>:b<SPACE>
  " s = view full width 
  " a = view full height
  " other usages TBD (e.g. click to go to vim location, etc)
- let g:vimtex_view_method = 'zathura'
+ if executable('zathura')
+	 let g:vimtex_view_method = 'zathura'
+ endif
  " used for greek letters in Vim when you're not highlighting the line
  set conceallevel=2 " if this is 1, it always conceals. 2 only when off the line
  " Conceal the following:

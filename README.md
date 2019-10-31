@@ -10,11 +10,10 @@ REQUIREMENTS (LINUX)
 * (Installed) cmake 3.0.2 or higher
 * (Installed) ninja-build
 * (Installed) rdm
-* (Installed) zathura
 * (Installed) latexmk
 * (Cloned into /home/<user>/dotfiles) https://github.com/adanmoran/system-setup-scripts
 
-If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build zathura latexmk```. For cmake, I recommend
+If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build latexmk```. For cmake, I recommend
 using the following commands:
 ```
 sudo apt-get install software-properties-common
@@ -35,6 +34,8 @@ cd ~/system-setup-scripts
 sudo ./install_tmux.sh 
 sudo ./install_neovim.sh
 ```
+
+If you want LaTeX to use Zathura with reverse searching, look below at the LaTeX section of this document.
 
 Next, run the dotfiles setup script. This will initialize the zshrc, vimrc, etc...
 with a lot of useful functionality, as well as create nice aliases for basic commands.
@@ -116,6 +117,11 @@ is always done!
 
 For LaTeX
 ---------
+To get a nicer PDF viewer, install Zathura and vim will automatically use this after compiling.
+''' 
+sudo apt-get install zathura
+'''
+
 If you want to have reverse search working in LaTeX (where you can <CTRL>-LeftClick on Zathura to be brought to the correct location in your tex files), you need to run
 '''
 sudo apt-get install xdotool
