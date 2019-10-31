@@ -284,16 +284,23 @@ Plug 'ncm2/ncm2-ultisnips'
 
 call plug#end()          " required
 
+"""""""""""""""""""" Buffer Tool """"""""""""""""""""
+" This tool will prepare the buffer list for you, so that you can type
+" part of the buffer name and tab-comlete to switch to the buffer you want
+nnoremap <Leader>b :ls<CR>:b<SPACE>
 
+"""""""""""""""""""" /Buffer Tool """""""""""""""""""" 
 
 """""""""""""""""""" LaTeX Config """"""""""""""""""""  
 " vimtex Usage:
 " <leader>ll = start compilation in continuous mode (saving updates pdf)
 
 " Options for vimtex
+ let g:tex_flavor = 'latex' " guarantee you're in latex mode, not plaintex mode
  let g:vimtex_enabled = 1 " enable/disable vimtex
  let g:vimtex_compiler_enabled = 1 " enable/disable the vimtex compiler interface
  let g:vimtex_compiler_method = 'latexmk' " set the compiler method
+ let g:vimtex_compiler_progname = 'nvr'
  " Set the viewer to be zathura
  " Zathura Usage:
  " j,k = scroll
