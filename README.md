@@ -10,9 +10,11 @@ REQUIREMENTS (LINUX)
 * (Installed) cmake 3.0.2 or higher
 * (Installed) ninja-build
 * (Installed) rdm
+* (Installed) zathura
+* (Installed) latexmk
 * (Cloned into /home/<user>/dotfiles) https://github.com/adanmoran/system-setup-scripts
 
-If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build```. For cmake, I recommend
+If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build zathura latexmk```. For cmake, I recommend
 using the following commands:
 ```
 sudo apt-get install software-properties-common

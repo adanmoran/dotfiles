@@ -71,11 +71,11 @@ if domain !=? 'neptec-small'
 endif
 
 if is_win==0 && domain !=? 'ec' && domain !=? 'neptec-small' && domain!=? 'school' && domain !=? 'siteground'
-	" YouCompleteMe
-	Plug 'Valloric/YouCompleteMe'
-
-	" YCMGenerator - generates configs for YouCompleteMe
-	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+"	" YouCompleteMe
+"	Plug 'Valloric/YouCompleteMe'
+"
+"	" YCMGenerator - generates configs for YouCompleteMe
+"	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 endif
 
 if domain !=? 'neptec-small' && domain !=? 'school'
@@ -217,9 +217,9 @@ if domain !=? 'neptec-small' && domain !=? 'school' && domain !=? 'ec' && domain
 
 	" General conceal settings. Will keep things concealed
 	" even when your cursor is on top of them.
-	Plug 'Wolfy87/vim-syntax-expand'
-	set conceallevel=1
-	set concealcursor=nvic
+"	Plug 'Wolfy87/vim-syntax-expand'
+"	set conceallevel=1
+"	set concealcursor=nvic
 
 	" vim-javascript conceal settings.
 "	let g:javascript_conceal_function = "λ"
@@ -271,13 +271,82 @@ endif
 " show the file you're in, display the mode, etc...
 Plug 'vim-airline/vim-airline'
 
-" Plugin to automatically insert matching braces
-" Plug 'Raimondi/delimitMate'
+"LaTeX plugins
+ Plug 'lervag/vimtex' " Tex Compiler
+ Plug 'KeitaNakamura/tex-conceal.vim' " show greek letters in LaTeX 
+
+" NCM Completion manager
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
 
 call plug#end()          " required
 
 
 
+"""""""""""""""""""" LaTeX Config """"""""""""""""""""  
+" vimtex Usage:
+" <leader>ll = start compilation in continuous mode (saving updates pdf)
+
+" Options for vimtex
+ let g:vimtex_enabled = 1 " enable/disable vimtex
+ let g:vimtex_compiler_enabled = 1 " enable/disable the vimtex compiler interface
+ let g:vimtex_compiler_method = 'latexmk' " set the compiler method
+ " Set the viewer to be zathura
+ " Zathura Usage:
+ " j,k = scroll
+ " gg/G = scroll to top/bottom
+ " / = search
+ " <CTRL>j,k = scroll page
+ " s = view full width 
+ " a = view full height
+ " other usages TBD (e.g. click to go to vim location, etc)
+ let g:vimtex_view_method = 'zathura'
+ " used for greek letters in Vim when you're not highlighting the line
+ set conceallevel=2 " if this is 1, it always conceals. 2 only when off the line
+ " Conceal the following:
+ " a = accents/ligatures
+ " b = bold and italic
+ " d = delimiters (e.g. $ or \(, etc)
+ " m = math symbols
+ " g = Greek letters
+ " s = superscripts and subscripts
+ let g:tex_conceal = "abgms"
+ " Specify that latexmk should build to a subfolder called build relative to 
+ " the main tex file
+ let g:vimtex_compiler_latexmk = {
+            \ 'build_dir' : 'build',
+            \}
+
+" Specify that the main file be 'main' for multi-file projects
+au BufReadPre *.tex let b:vimtex_main = 'main.tex'
+
+" NCM completion for LaTeX
+autocmd BufEnter * call ncm2#enable_for_buffer()
+au User Ncm2Plugin call ncm2#register_source({
+            \ 'name' : 'vimtex',
+            \ 'priority': 1,
+            \ 'subscope_enable': 1,
+            \ 'complete_length': 1,
+            \ 'scope': ['tex'],
+            \ 'matcher': {'name': 'combine',
+            \           'matchers': [
+            \               {'name': 'abbrfuzzy', 'key': 'menu'},
+            \               {'name': 'prefix', 'key': 'word'},
+            \           ]},
+            \ 'mark': 'tex',
+            \ 'word_pattern': '\w+',
+            \ 'complete_pattern': g:vimtex#re#ncm,
+            \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
+            \ })
+set completeopt=noinsert,menuone,noselect
+set noshowmode
+
+"""""""""""""""""""" /LaTeX Config """"""""""""""""""""  
+
+"""""""""""""""""""" Colour Scheme """""""""""""""""""" 
 " Random Colorscheme
 " TODO Add 'go to last colorschem'
 " TODO Add 'mark as terrible colorscheme'
@@ -306,7 +375,6 @@ endfunction
 " Execute PHP lines http://stackoverflow.com/a/5622258/1861346
 ":autocmd FileType php noremap <C-M> :w!<CR>:!/usr/bin/php %<CR>
 
-" Colour scheme
 if has('gui_running')
 	set mousemodel=popup
 	set nomousehide
@@ -316,6 +384,7 @@ if has('gui_running')
 	set background=dark
 endif
 
+" Set my colour scheme to dark mode
 	colorscheme onedark
 	"	call <SID>RandColorScheme()
 
@@ -330,6 +399,7 @@ if is_win
 "elseif has('unix')
 "	let matt='is_unix'
 endif
+"""""""""""""""""""" /Colour Scheme """"""""""""""""""""
 
 """"""""""""""""""""" Git-Gutter """"""""""""""""""""""""
 nmap ]h <Plug>GitGutterNextHunk
@@ -361,64 +431,65 @@ set autoread
 set tags=./tags;/
 
 """"""""""""""""""""""" YCM Config """"""""""""""""""""""""
-if has('unix')
-	" Let YouCompleteMe use tag files for completion as well:
-	let g:ycm_collect_identifiers_from_tags_files = 1
-
-	" Turn off prompting to load .ycm_extra_conf.py:
-	let g:ycm_confirm_extra_conf = 0
-
-	" Map GetType to an easier key combination:
-	nnoremap <leader>ty :YcmCompleter GetType<CR>
-
-	" Compile the file
-	nnoremap <leader>y :YcmDiag<CR>
-
-	" F2 will jump to a variable/method definition
-	map <F2> :YcmCompleter GoTo<CR>
-
-	nnoremap <leader>diag YcmDiag<CR>
-
-	" Ignore some files
-	let g:ycm_filetype_blacklist = {
-		\ 'tagbar'    : 1,
-		\ 'qf'        : 1,
-		\ 'notes'     : 1,
-		\ 'markdown'  : 1,
-		\ 'unite'     : 1,
-		\ 'text'      : 1,
-		\ 'vimwiki'   : 1,
-		\ 'pandoc'    : 1,
-		\ 'infolog'   : 1,
-		\ 'vim'       : 1,
-		\ 'gitcommit' : 1,
-		\ 'gitrebase' : 1,
-		\ 'cmake'     : 1,
-		\ 'mail'      : 1
-	\}
-
-	let g:ycm_filetype_whitelist = {
-		\ 'javascript': 1,
-		\ 'python' : 1,
-		\ 'css'    : 1,
-		\ 'cpp'    : 1,
-		\ 'php'    : 1,
-		\ 'fortran': 1,
-		\ 'xml'    : 1,
-		\ 'html'   : 1,
-	\}
-
-	" Ignore large files (BONA db's for instance)
-	let g:ycm_disable_for_files_larger_than_kb = 300
-
-	" Shut off preview window on PHP files
-	if (&ft ==? 'php')
-		let g:ycm_add_preview_to_completeopt=0
-	endif
-	" Alternatively..
-	"au BufNewFile,BufRead *.php let g:ycm_add_preview_to_completeopt=0
-
-endif
+"if has('unix')
+"	" Let YouCompleteMe use tag files for completion as well:
+"	let g:ycm_collect_identifiers_from_tags_files = 1
+"
+"	" Turn off prompting to load .ycm_extra_conf.py:
+"	let g:ycm_confirm_extra_conf = 0
+"
+"	" Map GetType to an easier key combination:
+"	nnoremap <leader>ty :YcmCompleter GetType<CR>
+"
+"	" Compile the file
+"	nnoremap <leader>y :YcmDiag<CR>
+"
+"	" F2 will jump to a variable/method definition
+"	map <F2> :YcmCompleter GoTo<CR>
+"
+"	nnoremap <leader>diag YcmDiag<CR>
+"
+"	" Ignore some files
+"	let g:ycm_filetype_blacklist = {
+"		\ 'tagbar'    : 1,
+"		\ 'qf'        : 1,
+"		\ 'notes'     : 1,
+"		\ 'markdown'  : 1,
+"		\ 'unite'     : 1,
+"		\ 'text'      : 1,
+"		\ 'vimwiki'   : 1,
+"		\ 'pandoc'    : 1,
+"		\ 'infolog'   : 1,
+"		\ 'vim'       : 1,
+"		\ 'gitcommit' : 1,
+"		\ 'gitrebase' : 1,
+"		\ 'cmake'     : 1,
+"		\ 'mail'      : 1,
+"		\ 'tex'		  : 1
+"	\}
+"
+"	let g:ycm_filetype_whitelist = {
+"		\ 'javascript': 1,
+"		\ 'python' : 1,
+"		\ 'css'    : 1,
+"		\ 'cpp'    : 1,
+"		\ 'php'    : 1,
+"		\ 'fortran': 1,
+"		\ 'xml'    : 1,
+"		\ 'html'   : 1,
+"	\}
+"
+"	" Ignore large files (BONA db's for instance)
+"	let g:ycm_disable_for_files_larger_than_kb = 300
+"
+"	" Shut off preview window on PHP files
+"	if (&ft ==? 'php')
+"		let g:ycm_add_preview_to_completeopt=0
+"	endif
+"	" Alternatively..
+"	"au BufNewFile,BufRead *.php let g:ycm_add_preview_to_completeopt=0
+"
+"endif
 """""""""""""""""""""" /YCM Config """"""""""""""""""""""""
 
 """""""""""""""""""" Ultisnips config """"""""""""""""""""""
