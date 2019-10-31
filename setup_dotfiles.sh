@@ -140,6 +140,14 @@ if [[ ! -e ${h}/.fzf ]]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ${h}/.fzf
 	${h}/.fzf/install
 fi
+# Clone the zathurarc file if zathura is installed
+if [[ "" != "$(which zathura)" ]]; then
+	# zathura is installed
+	if [[ ! -e "${h}/.config/zathura" ]]; then
+		mkdir -p "${h}/.config/zathura"
+	fi
+	echo "ln -fs ${base}/zathurarc ${h}/.config/zathura/zathurarc" 
+fi
 
 # Can no longer to this as I'm typically using zsh
 # and this is writting in bash.  I have to keep it
