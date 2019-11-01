@@ -10,10 +10,9 @@ REQUIREMENTS (LINUX)
 * (Installed) cmake 3.0.2 or higher
 * (Installed) ninja-build
 * (Installed) rdm
-* (Installed) latexmk
 * (Cloned into /home/<user>/dotfiles) https://github.com/adanmoran/system-setup-scripts
 
-If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build latexmk```. For cmake, I recommend
+If you do not have the installed applications yet, run ``` sudo apt-get install git zsh realpath ninja-build```. For cmake, I recommend
 using the following commands:
 ```
 sudo apt-get install software-properties-common
@@ -35,7 +34,10 @@ sudo ./install_tmux.sh
 sudo ./install_neovim.sh
 ```
 
-If you want LaTeX to use Zathura with reverse searching, look below at the LaTeX section of this document.
+If you have an extra 4GB and want to install LaTeX (texlive-full), the latexmk compiler, and the Zathura viewer (with functionality for forward and reverse searching), then run 
+'''
+sudo ./install_latex.sh
+'''
 
 Next, run the dotfiles setup script. This will initialize the zshrc, vimrc, etc...
 with a lot of useful functionality, as well as create nice aliases for basic commands.
@@ -117,16 +119,16 @@ is always done!
 
 For LaTeX
 ---------
-To get a nicer PDF viewer, install Zathura and vim will automatically use this after compiling.
-''' 
-sudo apt-get install zathura
-'''
+The LaTeX editor we use in Vim is "vimtex", which has automatic compilation through latexmk and displays in Zathura.
+To start or stop the compiler in your tex repository, use '\ll'. By default it is set up for automatic compilation on save.
 
-If you want to have reverse search working in LaTeX (where you can <CTRL>-LeftClick on Zathura to be brought to the correct location in your tex files), you need to run
-'''
-sudo apt-get install xdotool
-'''
-Then simply open your tex files, change something, save and recompile. Now Zathura should open and you can control-click on any item to have neovim automatically switch to that point in the text.
+The VimRC by default uses the Zathura viewer for displaying latex files, and vim will allow you to use forward (from vim to pdf) and reverse (from pdf to vim) search.
+
+For forward search, use '\lv' on whatever word your cursor is highlighting.
+For reverse search you can <CTRL>-LeftClick on Zathura to be brought to the correct location in your tex files. 
+Simply open your tex files, change something, save and recompile. Now Zathura should open and you can control-click on any item to have neovim automatically switch to that point in the text.
+
+To see more commands, search the vimtex documentation with ':help vimtex' in vim.
 
 NOTES:
 ======
