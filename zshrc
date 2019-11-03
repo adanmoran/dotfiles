@@ -219,74 +219,8 @@ if [[ -e $(which fuck 2>/dev/null) ]]; then
 	eval "$(thefuck --alias)"
 fi
 
-if [[ $(hostname) == "khea" ]]; then
-	module use /usr/local/Modules/default/modulefiles/
-	module load modules
-
-	module load khea
-
-	#module load mayofest
-	#module load diplomacy
-	module load bona
-	#module load youtuber
-
-	# CMC
-	export PATH=~newarmn/tools/run-tools/linux24-x86-64/bin:$PATH
-elif [[ $(hostname) == "pof" || $(hostname) == "tinder" || $(hostname) == "grinder" ]]; then
-	module use /usr/share/modules/modulefiles
-	module load modules
-
-	module load neptec 3dri
-
-	# Ensure Google Test tests always show colour output:
-	export GTEST_COLOR=yes
-
-	# Set up ninja tab completion:
-	if [[ -e /usr/share/zsh/functions/Completion/_ninja ]]; then
-		source /usr/share/zsh/functions/Completion/_ninja
-	fi;
-
-elif [[ $(hostname) == dena* ]]; then
-	# This should be a system "module use"!
-	module use /cm/shared/denaModules
-
-	if [[ $(hostname) = dena[5-6] ]]; then
-		module use /software/arch/intel64/modules/all
-	else
-		module use /software/arch/amd64/modules/all
-	fi
-
-	# PGI
-	module use /cm/shared/apps/pgi/modulefiles
-
-	# defaults
-	module load shared modules
-
-	# Development
-	module load pgi64/2013 slurm
-
-	if [[ $(hostname) == "dena" ]]; then
-		# Admin modules
-		module load cmsh cmgui
-	fi
-
-elif [[ "$(hostname)" == "pontus.cee.carleton.ca" ]]; then
-	module load pontus
-
-elif [[ "$(uname -o)" == "Cygwin" ]]; then
-	# This targets windows laptop at Neptec
-
-	# Modules isn't available here, so duplicate the most common aliases
-	if [[ "${modules_enabled}" == "0" ]]; then
-		base=${HOME}/workspace/opal2
-		ARCH=o2win64
-		export bld=${base}/build-3dri-${ARCH}-release
-		ws=${base}/3dri/Applications/OPAL2/3DRiWebScheduler
-		export wss=${ws}/src
-		export wsi=${ws}/include/3DRiWebScheduler
-	fi
-
-elif [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
+# Old code from Neptec
+if [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 	export BASE=${HOME}/workspace/opal2
 	export QT_DIR=${HOME}/Qt5.3.2/5.3/gcc_64/
 	export ARCH=$(uname -s)$(uname -r | cut -d. -f1)$(uname -m)
@@ -307,6 +241,8 @@ elif [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 	export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 	export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 elif [[ "$(hostname)" == "roberto" ]]; then
+
+# Definitions for all my hostnames
 	# Set ROS sources
 #	source /opt/ros/kinetic/setup.zsh
 #	source /home/adanmoran/ROSRadar/kinetic_workspace/setup.zsh
