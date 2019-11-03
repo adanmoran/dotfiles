@@ -7,13 +7,12 @@ set shell=/bin/bash
 let hostname = substitute(system('hostname'), '\n', '', '')
 let hostos = substitute(system('uname -o'), '\n', '', '')
 
-
-let domain='neptec'
+let domain='roberto'
 " echo 'Using domain ' . domain
 
 let is_win=0
 let is_mac=0
-let is_nix=1
+let is_nix=0
 if has('win32')||has('win32unix')
 	let is_win=1
 elseif has('mac')
@@ -43,7 +42,8 @@ filetype off                 " required
 call plug#begin('~/dotfiles/bundles')
 
 
-if domain !=? 'neptec-small'
+if is_win==0
+"---------- Colour Scheme Plugins ----------"
 	" Solarized colour scheme
 	Plug 'altercation/vim-colors-solarized'
 
@@ -53,113 +53,99 @@ if domain !=? 'neptec-small'
 	" Completion and semantic error checking for Angular Components
 	Plug 'Quramy/ng-tsserver'
 
-  	if domain !=? 'ec'
-		" Atelier color scheme
-		Plug 'atelierbram/vim-colors_atelier-schemes'
-		" base16-atelierforest base16-atelierplateau base16-atelierheath base16-ateliercave base16-ateliersulphurpool base16-atelierlakeside base16-ateliersavanna base16-atelierseaside base16-atelierdune base16-atelierestuary
+	" Atelier color scheme
+	Plug 'atelierbram/vim-colors_atelier-schemes'
+	" base16-atelierforest base16-atelierplateau base16-atelierheath base16-ateliercave base16-ateliersulphurpool base16-atelierlakeside base16-ateliersavanna base16-atelierseaside base16-atelierdune base16-atelierestuary
 
-		" Duotones
-		Plug 'atelierbram/vim-colors_duotones'
+	" Duotones
+	Plug 'atelierbram/vim-colors_duotones'
 
-		" Full of colour schemes:
-		Plug 'flazz/vim-colorschemes'
-		" Tomorrow Tomorrow-Night Tomorrow-Night-Eighties Tomorrow-Night-Bright Tomorrow-Night-Blue SlateDark PapayaWhip MountainDew Monokai Monokai-chris DevC++ c colorscheme_template colorful colorful256 colorer coldgreen coffee codeschool CodeFactoryv3 codeburn codeblocks_dark cobalt cobaltish clue cloudy clearance cleanroom cleanphp clarity ciscoacl chrysoprase chocolate ChocolatePapaya ChocolateLiquor chlordane chela_light Chasing_Logic charon charged-256 chance-of-storm cascadia carvedwood carvedwoodcool carrot caramel candy candyman candycode campfire camo calmar256-light cake16 C64 bw bvemu buttercream busybee busierbee burnttoast256 bubblegum brown brookstream breeze borland bog bocau bmichaelsen blugrine bluez blue blueshift blueprint bluegreen bluedrake bluechia blink blazer BlackSea blacklight blackdust blackboard blackbeauty black_angus biogoo billw bensday beauty256 beachcomber bclear bayQua baycomb basic base16-atelierdune badwolf babymate256 autumn autumnleaf automation atom asu1dark astronaut asmanian_blood ashen aqua apprentice ansi_blows anotherdark aiseered af advantage adrian adobe adaryn adam abra 3dglasses 256-jungle 256-grayvim 0x7A69_dark heliotrope habiLight h80 guepardo guardian gruvbox grishin greyblue grey2 greenvision greens grb256 graywh gravity grape gothic gotham gotham256 gor google golden golded gobo github getfresh getafe gentooish gemcolors gardener fu fruity fruit fruidle frood freya forneus fokus fog fnaqevan flatui flattr flatland flatlandia flatcolor fine_blue felipec far evening_2 enzyme emacs elrodeo elisex elise elda.vim* ekvoli ekinivim ego edo_sea editplus ecostation eclm_wombat eclipse earth earthburn earendel dusk dull dual doriath doorhinge donbass django distinguished disciple developer deveiate devbox-dark-256 detailed desert desertEx desertedocean desertedoceanburnt desert256 desert256v2 derefined denim delphi delek dawn darth darkZ darkzen darktango darkspectrum darkslategray dark-ruby darkroom darkrobot darkocean darker-robin darkerdesert darkeclipse darkdot darkburn darkbone darkBlue darkblue2 darkblack dante d8g_04 d8g_03 d8g_02 d8g_01 custom cthulhian corporation corn cool contrasty colorzone navajo-night nature native mustang muon mud mrpink mrkn256 motus moss moria mopkai mophiaSmoke mophiaDark montz monokain molokai mod_tcsoft mizore mint miko midnight midnight2 metacosm mellow mdark mayansmoke matrix martin_krischik mars maroloccio marklar manxome manuscript mango made_of_code mac_classic luna luinnar lucius louver lodestone lizard lizard256 literal_tango liquidcarbon lingodirector lilypink lilydjwg_green lilydjwg_dark lilac lightcolors leya lettuce less leo leglight2 legiblelight lazarus last256 landscape kyle kruby kolor kkruby kiss kib_plastic kib_darktango khaki kellys kate kalt kaltex kalisi jiks jhlight jhdark jellyx jellybeans jelleybeans jammy ironman ir_black inkpot ingretu industry industrial impact impactG iceberg icansee ibmedit iangenzo hybrid hybrid-light hornet holokai herokudoc herokudoc-gvim herald hemisu softblue softbluev2 smyck smp skittles_dark skittles_berry simplewhite simple_b simpleandfriendly simple256 silent sift sienna shobogenzo shadesofamber sf sexy-railscasts settlemyer seoul seoul256 seoul256-light selenitic sea seashell sean scite scala saturn satori sand rtl rootwater robinhood revolutions reloaded reliable relaxedgreen refactor redstring redblack rdark rdark-terminal rcg_term rcg_gui rastafari random rainbow_neon rainbow_fruit rainbow_fine_blue railscasts radicalgoodspeed quagmire python pyte pw putty psql pspad proton professional prmths print_bw potts pleasant playroom pink pic phpx phphaxor phd pf_earth perfect peppers pencil peaksea paintbox pacific otaku osx_like orange olive oceanlight oceandeep oceanblack oceanblack256 obsidian obsidian2 nuvola nour norwaytoday northsky northland no_quarter nightwish nightVision night_vision night nightsky nightshimmer nightflight nightflight2 nicotine newsprint newspaper nevfn neverness neverland neverland-darker neverland2 neverland2-darker neutron nerv-ous neon nefertiti nedit nedit2 nazca navajo zmrok zephyr zen zenesque zenburn zazen yeller yaml xterm16 xoria256 xmaslights xian xemacs wuye wood wombat wombat256 wombat256mod wombat256i winter wintersday win9xblueback widower whitedust whitebox watermark warm_grey wargrey vylight vydark void vj vividchalk visualstudio vilight vibrantink vexorian vc vcbc vanzan_color up underwater underwater-mod understated umber-green ubloh two2tango twitchy twilight twilight256 tutticolori turbo trogdor trivial256 transparent torte toothpik tony_light tomatosoup tolerable tir_black tidy tibet thor thestars thegoodluck textmate16 tetragrammaton tesla telstar tcsoft tchaba tchaba2 taqua tangoX tango tangoshady tango-morning tango-desert tango2 tabula synic symfony swamplight surveyor summerfruit summerfruit256 strawimodo strange stingray stackoverflow spring spiderhawk spectro southwest-fog southernlights soso sorcerer sonoma sonofobsidian sol sol-term solarized softlight
-	endif
-
+	" Full of colour schemes:
+	Plug 'flazz/vim-colorschemes'
+	" Tomorrow Tomorrow-Night Tomorrow-Night-Eighties Tomorrow-Night-Bright Tomorrow-Night-Blue SlateDark PapayaWhip MountainDew Monokai Monokai-chris DevC++ c colorscheme_template colorful colorful256 colorer coldgreen coffee codeschool CodeFactoryv3 codeburn codeblocks_dark cobalt cobaltish clue cloudy clearance cleanroom cleanphp clarity ciscoacl chrysoprase chocolate ChocolatePapaya ChocolateLiquor chlordane chela_light Chasing_Logic charon charged-256 chance-of-storm cascadia carvedwood carvedwoodcool carrot caramel candy candyman candycode campfire camo calmar256-light cake16 C64 bw bvemu buttercream busybee busierbee burnttoast256 bubblegum brown brookstream breeze borland bog bocau bmichaelsen blugrine bluez blue blueshift blueprint bluegreen bluedrake bluechia blink blazer BlackSea blacklight blackdust blackboard blackbeauty black_angus biogoo billw bensday beauty256 beachcomber bclear bayQua baycomb basic base16-atelierdune badwolf babymate256 autumn autumnleaf automation atom asu1dark astronaut asmanian_blood ashen aqua apprentice ansi_blows anotherdark aiseered af advantage adrian adobe adaryn adam abra 3dglasses 256-jungle 256-grayvim 0x7A69_dark heliotrope habiLight h80 guepardo guardian gruvbox grishin greyblue grey2 greenvision greens grb256 graywh gravity grape gothic gotham gotham256 gor google golden golded gobo github getfresh getafe gentooish gemcolors gardener fu fruity fruit fruidle frood freya forneus fokus fog fnaqevan flatui flattr flatland flatlandia flatcolor fine_blue felipec far evening_2 enzyme emacs elrodeo elisex elise elda.vim* ekvoli ekinivim ego edo_sea editplus ecostation eclm_wombat eclipse earth earthburn earendel dusk dull dual doriath doorhinge donbass django distinguished disciple developer deveiate devbox-dark-256 detailed desert desertEx desertedocean desertedoceanburnt desert256 desert256v2 derefined denim delphi delek dawn darth darkZ darkzen darktango darkspectrum darkslategray dark-ruby darkroom darkrobot darkocean darker-robin darkerdesert darkeclipse darkdot darkburn darkbone darkBlue darkblue2 darkblack dante d8g_04 d8g_03 d8g_02 d8g_01 custom cthulhian corporation corn cool contrasty colorzone navajo-night nature native mustang muon mud mrpink mrkn256 motus moss moria mopkai mophiaSmoke mophiaDark montz monokain molokai mod_tcsoft mizore mint miko midnight midnight2 metacosm mellow mdark mayansmoke matrix martin_krischik mars maroloccio marklar manxome manuscript mango made_of_code mac_classic luna luinnar lucius louver lodestone lizard lizard256 literal_tango liquidcarbon lingodirector lilypink lilydjwg_green lilydjwg_dark lilac lightcolors leya lettuce less leo leglight2 legiblelight lazarus last256 landscape kyle kruby kolor kkruby kiss kib_plastic kib_darktango khaki kellys kate kalt kaltex kalisi jiks jhlight jhdark jellyx jellybeans jelleybeans jammy ironman ir_black inkpot ingretu industry industrial impact impactG iceberg icansee ibmedit iangenzo hybrid hybrid-light hornet holokai herokudoc herokudoc-gvim herald hemisu softblue softbluev2 smyck smp skittles_dark skittles_berry simplewhite simple_b simpleandfriendly simple256 silent sift sienna shobogenzo shadesofamber sf sexy-railscasts settlemyer seoul seoul256 seoul256-light selenitic sea seashell sean scite scala saturn satori sand rtl rootwater robinhood revolutions reloaded reliable relaxedgreen refactor redstring redblack rdark rdark-terminal rcg_term rcg_gui rastafari random rainbow_neon rainbow_fruit rainbow_fine_blue railscasts radicalgoodspeed quagmire python pyte pw putty psql pspad proton professional prmths print_bw potts pleasant playroom pink pic phpx phphaxor phd pf_earth perfect peppers pencil peaksea paintbox pacific otaku osx_like orange olive oceanlight oceandeep oceanblack oceanblack256 obsidian obsidian2 nuvola nour norwaytoday northsky northland no_quarter nightwish nightVision night_vision night nightsky nightshimmer nightflight nightflight2 nicotine newsprint newspaper nevfn neverness neverland neverland-darker neverland2 neverland2-darker neutron nerv-ous neon nefertiti nedit nedit2 nazca navajo zmrok zephyr zen zenesque zenburn zazen yeller yaml xterm16 xoria256 xmaslights xian xemacs wuye wood wombat wombat256 wombat256mod wombat256i winter wintersday win9xblueback widower whitedust whitebox watermark warm_grey wargrey vylight vydark void vj vividchalk visualstudio vilight vibrantink vexorian vc vcbc vanzan_color up underwater underwater-mod understated umber-green ubloh two2tango twitchy twilight twilight256 tutticolori turbo trogdor trivial256 transparent torte toothpik tony_light tomatosoup tolerable tir_black tidy tibet thor thestars thegoodluck textmate16 tetragrammaton tesla telstar tcsoft tchaba tchaba2 taqua tangoX tango tangoshady tango-morning tango-desert tango2 tabula synic symfony swamplight surveyor summerfruit summerfruit256 strawimodo strange stingray stackoverflow spring spiderhawk spectro southwest-fog southernlights soso sorcerer sonoma sonofobsidian sol sol-term solarized softlight
+	"
 	" One-dark
 	Plug 'joshdick/onedark.vim'
-endif
 
-if is_win==0 && domain !=? 'ec' && domain !=? 'neptec-small' && domain!=? 'school' && domain !=? 'siteground'
-"	" YouCompleteMe
+"---------- /Colour Scheme Plugins ----------"
+
+"---------- YouCompleteMe - Autocompletion C++ ----------"
 "	Plug 'Valloric/YouCompleteMe'
 "
 "	" YCMGenerator - generates configs for YouCompleteMe
 "	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-endif
+"---------- /YouCompleteMe ----------"
 
-if domain !=? 'neptec-small' && domain !=? 'school'
-	" PHP Complete
-	Plug 'shawncplus/phpcomplete.vim'
-endif
+"---------- NCM2 Completion Manager ----------"
+	" NCM Completion manager
+	Plug 'roxma/nvim-yarp'
+	Plug 'ncm2/ncm2'
+	Plug 'ncm2/ncm2-bufword'
+	Plug 'ncm2/ncm2-path'
+	Plug 'ncm2/ncm2-ultisnips'
+"---------- /NCM2 ----------"
 
-if domain !=? 'neptec-small' && domain !=? 'ec' && domain != 'siteground'
-	" NERD Tree - file explorer for vim
+"---------- NERD Tree - file explorer for vim ---------"
 	Plug 'scrooloose/nerdtree'
-endif
+"---------- /NERD Tree ---------"
 
-if domain !=? 'neptec-small'
-	" Install fzf, the fuzzy searcher
+"---------- FZF - The Fuzzy Searcher ----------"
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
-endif
+"---------- /FZF ----------"
 
-if is_win==0 && domain !=? 'ec' && domain !=? 'school'
-	" Better C++ Syntax Highlighting:
+"---------- VCEH - Better C++ Syntax Highlighting ---------"
 	Plug 'octol/vim-cpp-enhanced-highlight'
-endif
+"---------- /VCEH ----------"
 
-if is_win==0 && domain !=? 'ec' && domain !=? 'siteground'
+"---------- Ultisnips ----------"
 	" Track the ultisnips engine.
 	Plug 'SirVer/ultisnips'
 
 	" Snippets are separated from the engine. Add this if you want them:
 	Plug 'honza/vim-snippets'
-endif
+"---------- /Ultisnips ----------"
 
-" Easy motion
-Plug 'easymotion/vim-easymotion'
+"---------- EasyMotion ----------"
+	" Type e.g <Leader><Leader> then any standard vim command you want. It'll
+	" highlight all the things you can jump to. 
+	" e.g. <L><L>w highlights all words so you can jump to them by typing the
+	" highlighted letter
+	Plug 'easymotion/vim-easymotion'
+"---------- /EasyMotion ----------"
 
-if is_win==0 && (domain ==? 'neptec' || domain ==? 'home') && domain !=? 'ec'
-	" tagbar - allows browsing tags of the current source file
+"---------- tagbar ----------"
+	" Allows browsing tags of the current source file
 	" from ctags. Good for seeing functions, variables, etc.
 	Plug 'majutsushi/tagbar'
-endif
-
-if is_win==0 && (domain ==? 'neptec' || domain ==? 'home')
 	" Key mappings for clang-format, to format source code:
 	map <leader>f :pyf /usr/share/vim/addons/syntax/clang-format-3.8.py<CR>
-endif
+"---------- /tagbar ----------"
 
-" fugitive - a Git wrapper for vim. Also allows current
-" git branch to be shown by vim-airline:
-Plug 'tpope/vim-fugitive'
-set diffopt+=vertical
+"---------- fugitive - a Git wrapper for vim ----------"
+"Also allows current git branch to be shown by vim-airline:
+	Plug 'tpope/vim-fugitive'
+	set diffopt+=vertical
+"---------- /fugitive ----------"
 
-if domain !=? 'school' && domain !=? 'ec'
-	" gitgutter - Shows [git] status of each line in a file
-	" On Dena, this injects annoying arroy key characters everywhere (e.g. ^[0D
-	" ^[0B ^[0A ^[0C)
-
-	" Toggle with :GitGutterToggle
+"---------- gitgutter ----------"
+" Shows [git] status of each line in a file
+" Toggle with :GitGutterToggle
 	Plug 'airblade/vim-gitgutter'
-endif
+"---------- /gitgutter ----------"
 
-" Plug to assist with commenting out blocks of text:
-Plug 'tomtom/tcomment_vim'
+"---------- tcomment ----------"
+	" Plug to assist with commenting out blocks of text.
+	" Use gc<Count>c{motion} to comment out those lines, or gcc for this line.
+	Plug 'tomtom/tcomment_vim'
+"---------- /tcomment ----------"
 
-" Status bar
-Plug 'powerline/powerline'
-
-if domain !=? 'ec' && domain !=? 'school'
-	" Switch between header and source files:
-	" TODO Make filetype specific: http://stackoverflow.com/questions/6133341/can-you-have-file-type-specific-key-bindings-in-vim
-	Plug 'derekwyatt/vim-fswitch'
-endif
-
-" Plug to help manage vim buffers:
-" Plug 'jeetsukumaran/vim-buffergator'
-
-" Plug to highlight the variable under the cursor:
-" Appears to have been deleted off GitHub, still available at: http://www.vim.org/scripts/script.php?script_id=4306
-" Plug 'OrelSokolov/HiCursorWords'
-
-if domain !=? 'school' && domain !=? 'ec' && domain !=? 'neptec-small'
-	" Doxygen
+"---------- Doxygen ----------"
+" Generate doxygen comments for C/C++ files using :Dox
 	Plug 'vim-scripts/DoxygenToolkit.vim'
-endif
+"---------- /Doxygen ----------"
 
-if domain !=? 'school' && domain !=? 'ec' && domain !=? 'neptec-small' && domain !=? 'siteground'
+"---------- RTags ----------"
 	" A Plug to use rtags in vim. (rtags allows for code following,
 	" some refactoring, etc.)
 	" Ensure to run the following in the build directory that uses rtags
@@ -167,121 +153,117 @@ if domain !=? 'school' && domain !=? 'ec' && domain !=? 'neptec-small' && domain
 	"    rc -J .
 	" And have the rdm service running somewhere in the background.
 	Plug 'lyuts/vim-rtags'
-endif
+"---------- /RTags ----------"
 
-if domain !=? 'school' && domain !=? 'ec' && domain !=? 'neptec-small' && domain !=? 'siteground'
-	" Database client
-	Plug 'vim-scripts/dbext.vim'
-endif
-
-if domain !=? 'neptec-small' && domain !=? 'school' && domain !=? 'ec'
-	" Colour coding nests
+"---------- Rainbow ----------"
+	" Colour-code matching braces and environments
+	" to make it easier to see which braces match up
+	" and which don't
 	Plug 'luochen1990/rainbow'
 	let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-endif
+"---------- /Rainbow ----------"
 
-" Tabular, align equals
-Plug 'godlygeek/tabular'
+"---------- Tabular ----------"
+	" Align multiple lines based on =, :, etc using
+	" :Tab/=, :Tab/:, :Tab/|, etc
+	Plug 'godlygeek/tabular'
+"---------- /Tabular ----------"
 
-" Show markers
-Plug 'kshenoy/vim-signature'
+"---------- Markers ----------"
+	" Show markers and allow for custom, non-alphabet markers
+	" Also provides tools to simplify marker generation and
+	" for jumping to/from markers
+	Plug 'kshenoy/vim-signature'
+"---------- /Markers ----------"
 
-" Suppose to make closing splits better (less window resizing)
-
-if domain !=? 'neptec-small' && domain !=? 'ec'
+"---------- PythonSyntax ----------"
 	" Python Syntax highlighting (the default is pretty bad)
 	Plug 'Hdima/python-syntax'
-endif
+"---------- PythonSyntax ----------"
 
-" Undo tree
-
-if domain !=? 'neptec-small'
+"---------- VimGrepper ----------"
 	" Plug to wrap all the various grep tools, and provide
 	" some more advanced search functionality
 	Plug 'mhinz/vim-grepper'
-endif
+"---------- /VimGrepper ----------"
 
-" Manage font size
-Plug 'drmikehenry/vim-fontsize'
+"---------- VimFontsize ----------"
+	" Manage font size
+	Plug 'drmikehenry/vim-fontsize'
+"---------- /VimFontsize ----------"
 
-if domain !=? 'siteground'
+"---------- Startify ----------"
+	" Add a nice starting page to vim where you can open
+	" previously used buffers
 	Plug 'mhinz/vim-startify'
-endif
+"---------- /Startify ----------"
 
-" Work with editorconfig files
-"Plug 'editorconfig-vim'
-
-" Javascript plugins to try
-if domain !=? 'neptec-small' && domain !=? 'school' && domain !=? 'ec' && domain !=? 'siteground'
+"---------- JavaScript ----------"
+   " Improved indentation, highlighting, etc
 	Plug 'pangloss/vim-javascript'
 
 	" General conceal settings. Will keep things concealed
 	" even when your cursor is on top of them.
-"	Plug 'Wolfy87/vim-syntax-expand'
-"	set conceallevel=1
-"	set concealcursor=nvic
+	"	Plug 'Wolfy87/vim-syntax-expand'
+	"	set conceallevel=1
+	"	set concealcursor=nvic
 
 	" vim-javascript conceal settings.
-"	let g:javascript_conceal_function = "λ"
-"	let g:javascript_conceal_this = "@"
-"	let g:javascript_conceal_return = "<"
-"	let g:javascript_conceal_prototype = "#"
-endif
+	"	let g:javascript_conceal_function = "λ"
+	"	let g:javascript_conceal_this = "@"
+	"	let g:javascript_conceal_return = "<"
+	"	let g:javascript_conceal_prototype = "#"
+"---------- /JavaScript ----------"
 
-" Vim sugar for the UNIX shell commands that need it the most. Features include:
-" :Remove: Delete a buffer and the file on disk simultaneously.
-" :Unlink: Like :Remove, but keeps the now empty buffer.
-" :Move:   Rename a buffer and the file on disk simultaneously.
-" :Rename: Like :Move, but relative to the current file's containing directory.
-" :Chmod:  Change the permissions of the current file.
-" :Mkdir:  Create a directory, defaulting to the parent of the current file.
-" :Find:   Run find and load the results into the quickfix list.
-" :Locate: Run locate and load the results into the quickfix list.
-" :Wall:   Write every open window. Handy for kicking off tools like guard.
-" :SudoWrite: Write a privileged file with sudo.
-" :SudoEdit:  Edit a privileged file with sudo.
-Plug 'tpope/vim-eunuch'
+"---------- Eunuch ----------"
+	" Vim sugar for the UNIX shell commands that need it the most. Features include:
+	" :Remove: Delete a buffer and the file on disk simultaneously.
+	" :Unlink: Like :Remove, but keeps the now empty buffer.
+	" :Move:   Rename a buffer and the file on disk simultaneously.
+	" :Rename: Like :Move, but relative to the current file's containing directory.
+	" :Chmod:  Change the permissions of the current file.
+	" :Mkdir:  Create a directory, defaulting to the parent of the current file.
+	" :Find:   Run find and load the results into the quickfix list.
+	" :Locate: Run locate and load the results into the quickfix list.
+	" :Wall:   Write every open window. Handy for kicking off tools like guard.
+	" :SudoWrite: Write a privileged file with sudo.
+	" :SudoEdit:  Edit a privileged file with sudo.
+	Plug 'tpope/vim-eunuch'
+"---------- /Eunuch ----------"
 
-" Handle auto-calling mksession
-Plug 'tpope/vim-obsession'
+"---------- VimObsession ----------"
+	" Handle auto-calling mksession
+	" Type :Obsess to start recording (and it will save this session)
+	" Type :Obsess! to stop recording
+	Plug 'tpope/vim-obsession'
+"---------- /VimObsession ----------"
 
-if !has('gui_running') && !is_win
-	" Plugin to get gvim colourschemes work better in terminal vim
-	Plug 'godlygeek/csapprox'
-endif
+"---------- CSApprox ----------"
+	if !has('gui_running')
+		" Plugin to get gvim colourschemes work better in terminal vim
+		Plug 'godlygeek/csapprox'
+	endif
+"---------- /CSApprox ----------"
 
-" Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'scrooloose/syntastic' " <-- using jshint for syntax
+"---------- Powerline Status Bar ----------"
+	" Status bar
+	Plug 'powerline/powerline'
+"---------- /Powerline ----------"
 
-"if domain !=? 'school'
-"	" Concurrent Editing
-"	Plug 'floobits/floobits-neovim'
-"endif
+"---------- Airline ----------"
+	" Plugin to improve vim's status line by making it colourize,
+	" show the file you're in, display the mode, etc...
+	Plug 'vim-airline/vim-airline'
+"---------- /Airline ----------"
+
+"---------- LaTeX plugins ----------"
+	 Plug 'lervag/vimtex' " Tex Compiler
+	 Plug 'KeitaNakamura/tex-conceal.vim' " show greek letters in LaTeX 
+"---------- /LateX plugins ----------"
+
+endif "is_win == 0
 
 " All of your Plugins must be added before the following line
-
-" Plugin to use Ack.vim, the grep-style vim plugin
-" Usage: Ack SEARCH_TEXT [DIR = Current, search recursively down]
-if executable('ack')
-   Plug 'mileszs/ack.vim'
-	cnoreabbrev Ack Ack!
-endif
-
-" Plugin to improve vim's status line by making it colourize,
-" show the file you're in, display the mode, etc...
-Plug 'vim-airline/vim-airline'
-
-"LaTeX plugins
- Plug 'lervag/vimtex' " Tex Compiler
- Plug 'KeitaNakamura/tex-conceal.vim' " show greek letters in LaTeX 
-
-" NCM Completion manager
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-ultisnips'
-
 call plug#end()          " required
 
 """""""""""""""""""" Buffer Tool """"""""""""""""""""
@@ -294,14 +276,26 @@ nnoremap <Leader>b :ls<CR>:b<SPACE>
 """""""""""""""""""" LaTeX Config """"""""""""""""""""  
 " vimtex Usage:
 " <leader>ll = start compilation in continuous mode (saving updates pdf)
+" <leader>lc = clean (lC = clean full)
+" <leader>lv = go to pdf
+" <leader>le = look at log
 
 " Options for vimtex
  let g:tex_flavor = 'latex' " guarantee you're in latex mode, not plaintex mode
  let g:vimtex_enabled = 1 " enable/disable vimtex
  let g:vimtex_compiler_enabled = 1 " enable/disable the vimtex compiler interface
  let g:vimtex_compiler_method = 'latexmk' " set the compiler method
- let g:vimtex_compiler_progname = 'nvr'
- " Set the viewer to be zathura
+ let g:vimtex_compiler_progname = 'nvr' " use neovim-remote for reverse search
+ let g:vimtex_quickfix_autoclose_after_keystrokes = 1 " close the quickfix window if you type
+
+ " This command changes the log parser to use pplatex, which will display the
+ " correct file for common warnings (such as Overfull hbox, etc) but incorrect
+ " locations for undefined references, etc. 
+ " I suggest switching between the two when necessary; stick with the standard
+ " one for the most part, then when you want to get rid of Overfull/Underfull
+ " box warnings you can switch to pplatex and recompile to see new results.
+" let g:vimtex_quickfix_method = 'pplatex' " use pplatex to parse the log
+
  " Zathura Usage:
  " j,k = scroll
  " gg/G = scroll to top/bottom
@@ -309,7 +303,8 @@ nnoremap <Leader>b :ls<CR>:b<SPACE>
  " <CTRL>j,k = scroll page
  " s = view full width 
  " a = view full height
- " other usages TBD (e.g. click to go to vim location, etc)
+ " <CTRL>LeftClick = go to that location in neovim
+ " other usages TBD 
  if executable('zathura')
 	 let g:vimtex_view_method = 'zathura'
  endif
@@ -402,11 +397,6 @@ if is_win
 	behave xterm
 	set ffs=unix
 	set backspace=2
-	" options: set backspace=indent,eol,start
-"elseif has('mac')
-"	 ......
-"elseif has('unix')
-"	let matt='is_unix'
 endif
 """""""""""""""""""" /Colour Scheme """"""""""""""""""""
 
@@ -427,9 +417,7 @@ let g:cpp_class_scope_highlight = 1
 
 " Tell vim to set the current directory to the directory
 " of the file being opened:
-if domain !=? 'siteground'
-	set autochdir
-endif
+set autochdir
 
 " Have vim reload a file if it has changed outside
 " of vim:
@@ -503,7 +491,7 @@ set tags=./tags;/
 
 """""""""""""""""""" Ultisnips config """"""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-if is_win==0 && domain !=? 'school'
+if is_win==0
 	let g:UltiSnipsExpandTrigger='<c-j>'
 	let g:UltiSnipsJumpForwardTrigger='<c-j>'
 	let g:UltiSnipsJumpBackwardTrigger='<c-n>'
@@ -515,6 +503,7 @@ if is_win==0 && domain !=? 'school'
 	" snippets can be found:
 	set rtp+=~/dotfiles
 
+"TODO: Determine what this was for and if we still need it
 	augroup neptec-ultisnips
 		au!
 		autocmd BufRead */3dri/* :set rtp+=~/workspace/ScriptsAndTools
@@ -570,45 +559,12 @@ let NERDTreeChDirMode = 2
 nnoremap <leader>n :NERDTree .<CR>
 """""""""""""""""""" /NERDTree """"""""""""""""""""""
 
-
-if is_win==0 && domain ==? 'neptec'
-
-	"""""""""""""""""""" ctags """""""""""""""""""""""
+"""""""""""""""""""" ctags """""""""""""""""""""""
+if is_win == 0
 	" A key map to run ctags:
 	nnoremap <leader>ct :!ctags .<CR>
-	"""""""""""""""""""" /ctags """"""""""""""""""""""
-
 endif
-
-
-if is_win==0 && domain !=? 'neptec_small'
-
-	"""""""""""""""""""" DBext """""""""""""""""""""""
-	" let g:dbext_default_profile_<profile_name> = '<connection string>'
-	" https://github.com/vim-scripts/dbext.vim
-	" https://mutelight.org/dbext-the-last-sql-client-youll-ever-need
-	let g:dbext_default_profile_3dri = 'type=SQLITE:dbname=/home/matt/workspace/opal2/3dri/Applications/OPAL2/3DRiWebScheduler/scan_schedule.db'
-	let g:dbext_default_profile_ademirs = 'type=SQLITE:dbname=/home/matt/tabletopics/ademir.db'
-	let g:dbext_default_profile_ademirm = 'type=MYSQL:user=ademir:passwd=ademir:dbname=ademir'
-	let g:dbext_default_profile_mayofest = 'type=MYSQL:user=www:passwd=hyper:dbname=mayofest'
-
-	augroup neptec-db
-		au!
-		autocmd BufRead */3dri/* DBSetOption profile='3dri'
-	augroup end
-
-	augroup mayofest
-		au!
-		autocmd BufRead */mayofest/* DBSetOption profile=mayofest
-	augroup end
-
-
-	map <leader>lt :DBListTable<CR>
-
-	nnoremap <leader>sel :DBListConnections<CR>
-	nnoremap <leader>dep :DBProfilesRefresh<CR>
-	"""""""""""""""""""" /DBext """"""""""""""""""""""
-endif
+"""""""""""""""""""" /ctags """"""""""""""""""""""
 
 """"""""""""""""""""""" Grepper """"""""""""""""""""""""""
 " Grepper key bindings:
@@ -627,15 +583,6 @@ let g:grepper     = {
    \ }
 
 """"""""""""""""""""""" /Grepper """""""""""""""""""""""""
-
-
-""""""""""""""""""""""" /fswitch """""""""""""""""""""""""
-" Mapping for fswitch, to switch between header
-" and source:
-nmap <silent> <Leader>of :FSHere<cr>
-""""""""""""""""""""""" /fswitch """""""""""""""""""""""""
-
-
 
 """""""""""""""" Rainbow (foldering) """""""""""""""""""
 	let g:rainbow_conf = {
@@ -718,16 +665,7 @@ noremap <leader><Tab> :Buffers<CR>
 
 """"""""""""""""""""""""" /fzf """""""""""""""""""""""""""
 
-"""""""""""""""""""" <C-S> to Save """""""""""""""""""""""""""
-" Re-mape to save in insert mode
-inoremap <C-S> <Esc>:w<CR>
-" Re-map to save in normal mode
-noremap <C-S> :w<CR>
-""""""""""""""""""" /<C-S> to Save """""""""""""""""""""""""""
-
-
-
-
+"""""""""""""""""""" VIM Remappings """"""""""""""""""""
 filetype on
 syntax on
 map <S-Insert> <MiddleMouse>
@@ -740,10 +678,6 @@ set noincsearch
 set hlsearch
 set ffs=unix,dos
 
-" Easy save
-noremap <leader>w :w<CR>
-" map alt/apple or something-S for khea
-
 " Remove trailing space
 nnoremap <leader>rt :%s/\s\s*$//<CR>
 let trim_whitelist = ['php', 'js', 'cpp', 'h', 'vim', 'css']
@@ -755,12 +689,6 @@ if &diff
 	set diffopt+=iwhite
 endif
 
-" Map CTRL-Tab to change tab
-noremap <C-S-Tab> <Esc>:tabprev<CR>
-noremap <C-Tab> <Esc>:tabnext<CR>
-noremap <leader>tp <Esc>:tabprev<CR>
-noremap <leader>tn <Esc>:tabnext<CR>
-
 " Faster vertical expansion
 nmap <C-v> :vertical resize +5<cr>
 nmap <C-b> :above resize +5<cr>
@@ -770,7 +698,7 @@ noremap <C-w>th <C-W>t<c-w>H
 noremap <C-w>tv <C-W>t<c-w>K
 
 " Remove search results
-noremap H :noh<cr>
+noremap <Leader>/ :noh<cr>
 
 " Replace highlighted content with content of register 0
 noremap <C-p> ciw<Esc>"0p
@@ -783,26 +711,13 @@ imap <S-Tab> <C-o><<
 vnoremap < <gv
 vnoremap > >gv
 
-" ST term fucks up the delete key, seeing it as <F1>, so fixing it in vim for
-" now (might fix it better elsewhere)
-map <F1> x
-imap <F1> <DEL>
-
 " Match <> brackets
 set matchpairs+=<:>
-
-" PHP Artisan commands
-if (&ft ==? 'php')
-	abbrev gm !php artisan   generate:model
-	abbrev gc !php artisan   generate:controller
-	abbrev gmig !php artisan generate:migration
-endif
 
 " try to automatically fold xml
 let xml_syntax_folding=1
 
-"
-" Abbreviations
+" Fix typos with abbreviations
 ab laster laser
 ab jsut just
 ab eticket etiket
