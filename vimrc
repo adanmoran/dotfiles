@@ -390,7 +390,7 @@ set tags=./tags;/
 
 """""""""""""""""""" fugitive """"""""""""""""""""
 " Map  shortcut to open status pane for staging hunks
-noremap <leader>gst :Gstatus
+noremap <leader>gst :Gstatus<CR>
 
 """""""""""""""""""" /fugitive """"""""""""""""""""
 
