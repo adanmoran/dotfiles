@@ -240,8 +240,8 @@ if [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 	export PATH="$HOME/.linuxbrew/bin:$PATH"
 	export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 	export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+# Exports for my VM
 elif [[ "$(hostname)" == "roberto" ]]; then
-
 	# Set ROS sources
 	source /opt/ros/kinetic/setup.zsh
 	source /home/adanmoran/ROSRadar/kinetic_workspace/setup.zsh
