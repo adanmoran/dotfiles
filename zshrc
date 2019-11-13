@@ -242,10 +242,9 @@ if [[ "$(hostname)" == "amoran-VirtualBox" ]]; then
 	export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 elif [[ "$(hostname)" == "roberto" ]]; then
 
-# Definitions for all my hostnames
 	# Set ROS sources
-#	source /opt/ros/kinetic/setup.zsh
-#	source /home/adanmoran/ROSRadar/kinetic_workspace/setup.zsh
+	source /opt/ros/kinetic/setup.zsh
+	source /home/adanmoran/ROSRadar/kinetic_workspace/setup.zsh
 fi;
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
