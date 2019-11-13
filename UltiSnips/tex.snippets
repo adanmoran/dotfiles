@@ -1,3 +1,21 @@
 snippet ml "vim modeline"
-% vim: set ts=3 sw=3 sts=0 et ffs=unix :
+% vim: set tw=80 ts=4 sw=4 sts=0 et ffs=unix :
+endsnippet
+
+snippet root "subfile root link"
+%! TEX root = ${1:main}.tex
+
+${2}
+endsnippet
+
+snippet header "tex comment header"
+%/========== ${1:Header} ==========/%
+${0}
+%/========== /${1///g} ==========/%
+endsnippet
+
+snippet minipage "minipage environment"
+\begin{minipage}{${1:width}\textwidth}
+${0}
+\end{minipage}
 endsnippet
