@@ -619,6 +619,10 @@ nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""" Ultisnips config """"""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" Ultisnips enables expansion of code snippets, and works with NCM2.
+" To expand snippets, simply cycle through them with NCM2 commands and then
+" type the expand trigger. Any sections of the snippet can be cycled through
+" with the forward and backward triggers defined below.
 if is_win==0
 	let g:UltiSnipsExpandTrigger='<c-j>'
 	let g:UltiSnipsJumpForwardTrigger='<c-j>'
