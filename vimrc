@@ -1,3 +1,19 @@
+"""""""""""""""""""" VIM COMMANDS """"""""""""""""""""
+" Here is a list of the most useful vim commands (from normal mode), which I use
+" almost all the time and don't want to forget.
+" Note that I do not include remapped values or maps introduced by the plugins;
+" for these, please read below, check :map, or read the individual plugin
+" documentation.
+"
+"* A									= write to the end of the line
+"* gq{motion}						= restructure lines to have length=textwidth.
+"										  If in visual mode, just type gq.  
+"* :%s/<search>/<replace>/g	= search and replace every instance.
+"* v<C-v>							= visual block select columns. If you then type
+"										  <S-i>, you can insert into those columns.
+"
+"""""""""""""""""""" /VIM COMMANDS """"""""""""""""""""
+
 """""""""""""""""""" Setup """"""""""""""""""""
 " Required to hide garbage characters in NVIM/Tmux
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
@@ -465,7 +481,7 @@ let g:grepper     = {
  " I suggest switching between the two when necessary; stick with the standard
  " one for the most part, then when you want to get rid of Overfull/Underfull
  " box warnings you can switch to pplatex and recompile to see new results.
-" let g:vimtex_quickfix_method = 'pplatex' " use pplatex to parse the log
+ let g:vimtex_quickfix_method = 'pplatex' " use pplatex to parse the log
 
  " Zathura Usage:
  " j,k = scroll
