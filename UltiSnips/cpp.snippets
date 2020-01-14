@@ -1,0 +1,39 @@
+# Define snippets which can be used everywhere in this file
+# and load other python functions for use within snippets
+global !p
+from datetime import date
+
+def todaystring():
+    return date.today().strftime('%d/%b/%y')
+
+endglobal
+
+snippet ml "Vim modeline"
+/* vim: set tw=80 ts=4 sw=4 sts=0 et ffs=unix : */
+endsnippet
+
+snippet uoft "UofT header"
+/*******************************************************************************
+* File:	        `!p snip.rv = snip.fn`
+*		 
+* Author:       ${1:AUTHOR}
+* Created:      `!p snip.rv = todaystring()`
+*
+* Systems Control Group
+* Department of Electrical and Computer Engineering
+* University of Toronto
+*
+* Last Modified: `!p snip.rv = todaystring()`
+* Last Editor:   ${1///g}
+* Description:   ${2}
+*******************************************************************************/
+${0}
+endsnippet
+
+snippet ifnd "ifndef wrapper"
+#ifndef __${1:`!p snip.rv = snip.basename.upper()+'_'+snip.fn.split('.')[-1].upper()`}__
+
+${0}
+
+#endif
+endsnippet
