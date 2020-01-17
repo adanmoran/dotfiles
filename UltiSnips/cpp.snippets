@@ -37,3 +37,25 @@ ${0}
 
 #endif
 endsnippet
+
+snippet ts "test suite generator for GTest"
+#include "gtest/gtest.h"
+
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''),'_\(\w\)','\u\1','g')`}
+{
+public:
+	$1(){}
+};
+
+TEST($1,${2:TEST_NAME})
+{
+	$0
+}
+
+int main(int argc, char** argv)
+{
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+
+endsnippet
