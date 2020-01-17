@@ -245,6 +245,9 @@ elif [[ "$(hostname)" == "roberto" ]]; then
 	# Set ROS sources
 	source /opt/ros/kinetic/setup.zsh
 	source /home/adanmoran/ROSRadar/kinetic_workspace/setup.zsh
+
+	# Set CAPS_LOCK to Control
+	setxkbmap -layout us -option ctrl:nocaps
 fi;
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
