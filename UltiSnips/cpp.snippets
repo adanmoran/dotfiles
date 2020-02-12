@@ -31,8 +31,8 @@ ${0}
 endsnippet
 
 snippet ifnd "ifndef wrapper"
-#ifndef __${1:`!p snip.rv = snip.basename.upper()+'_'+snip.fn.split('.')[-1].upper()`}__
-
+#ifndef ${1:`!p snip.rv = '__'+snip.basename.upper()+'_'+snip.fn.split('.')[-1].upper()+'__'`}
+#define $1
 ${0}
 
 #endif
@@ -41,13 +41,21 @@ endsnippet
 snippet ts "test suite generator for GTest"
 #include "gtest/gtest.h"
 
-class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''),'_\(\w\)','\u\1','g')`}
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''),'_\(\w\)','\u\1','g')`} : public ::testing:Test
 {
 public:
 	$1(){}
+protected:
+	void SetUp() override 
+	{}
+
+	void TearDown() override
+	{}
+private:
+
 };
 
-TEST($1,${2:TEST_NAME})
+TEST_F($1,${2:TEST_NAME})
 {
 	$0
 }
