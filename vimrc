@@ -508,8 +508,13 @@ let g:grepper     = {
  " Specify that latexmk should build to a subfolder called build relative to 
  " the main tex file
  let g:vimtex_compiler_latexmk = {
-            \ 'build_dir' : 'build',
-            \}
+		\ 'build_dir' : 'build',
+		\}
+
+" Ignore any messages that match the following regexes in the quickfix log
+  let g:vimtex_quickfix_ignore_filters = [
+	  \ 'Underfull',
+	  \]
 
 " Specify that the main file be 'main' for multi-file projects
 au BufReadPre *.tex let b:vimtex_main = 'main.tex'
