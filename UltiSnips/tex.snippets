@@ -19,3 +19,19 @@ snippet minipage "minipage environment"
 ${0}
 \end{minipage}
 endsnippet
+
+snippet tikzalone "standalone Tikz file"
+%! TEX program = lualatex
+
+% Use :VimtexToggleMain to compile this file alone with Vimtex
+\documentclass[tikz]{standalone}
+
+\usepackage{sty/adantikz}
+
+\begin{document}
+\begin{tikzpicture}
+    ${0}
+\end{tikzpicture}
+\end{document}
+% vim: set tw=80 ts=4 sw=4 sts=0 et ffs=unix :
+endsnippet
